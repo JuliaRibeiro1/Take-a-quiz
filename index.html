@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="header">
+      <!--  <nav>
+            <button>About us</button>
+            <button>Home</button>
+        </nav>-->
+
+        <div class="homeP">
+            <div class="slideContainer">
+            <div class="slider"><img src="" alt=""></div>
+            <button class="prev">previous</button>
+            <button class="next">next</button>
+            </div>
+            
+        </div>
+        <!--<div class="search"><input type="search" name="" id=""></div>-->
+    </div>
+    
+    
+    <!--<div class="quizzes">
+        <h2>Tv shows</h2>
+        <div class="tvShows"> 
+            <div class="container">
+                <button id="ahs"><img src="images/ahs-cover.webp" alt="American horror story"><h3>American horror story</h3></button>
+                <button id="chicagoFire"><img src="images/chicago fire.png" alt="Chicago fire"><h3>Chicago fire</h3></button>
+                <button id="oitnb"><img src="images/p-oitnb.webp" alt="Orange is the new black"><h3>Orange is the new black</h3></button>
+            </div>
+        </div>
+    </div>
+       
+        </div>-->
+<script>
+
+const imgs = [
+
+{
+    img : "images/chicago fire.png",
+    text : "Who would you be in American Horror Story?",
+},
+{
+    img : "images/p-oitnb.webp",
+    text : "Who would you be in American Horror Story?",
+},
+{
+    img : "images/ahs-cover.webp",
+    text : "Who would you be in American Horror Story?",
+}
+
+]
+var i = 0
+document.querySelector(".next").addEventListener("click",() => {
+    if(i <= imgs.length ) {
+        document.querySelector(".slider img").src = imgs[i++].img
+        console.log(imgs)
+        
+   }
+    else {
+       i = 0
+    }
+})
+document.querySelector(".prev").addEventListener("click",() => {
+    document.querySelector(".slider img").src = imgs[i--].img
+    console.log(imgs[i--])
+    
+   
+})
+
+
+
+
+/*document.querySelector('#ahs').addEventListener("click",() => {
+    location.href = "assets/ahs.html"
+})
+document.querySelector('#chicagoFire').addEventListener("click",() => {
+    location.href = "assets/chicagoFire.html"
+})
+document.querySelector('#oitnb').addEventListener("click",() => {
+    location.href = "oitnb.html"
+})  */ 
+</script>
+</body>
+</html>

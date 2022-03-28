@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quiz.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="quiz">
+            <div class="Q1Container">
+                <div><span class="currentQ"></span>/9</div>
+                <div class="question1">How do you beheave at a party?</div>
+                        <button class="A1">I just sit in the corner...</button>
+                        <button class="B1">I'm the life of the party</button>
+                        <button class="C1">I try to socialize and make new friends></button>
+            </div>
+          
+   
+            
+    </div>
+</div>
+</div>
+<script>
+
+
+const QUESTION1 = document.querySelector(".question1")
+/*Questions and answers*/
+const q1 = [
+{
+    Qnumber : 2,
+    question : "Would you rather be a witch or a ghost?",
+    answerA : "Witch",
+    answerB : "Ghost",
+    answerC : "None",
+
+    
+},
+ {
+    Qnumber : 3,
+    question : "Pick one color",
+    answerA : "Pink",
+    answerB : "Red",
+    answerC : "White"
+},
+{
+    Qnumber : 4,
+    question : "Would you do anything to get what you want?",
+    answerA : "Yes",
+    answerB : "No",
+    answerC : "Maybe"
+},
+{
+    Qnumber : 5,
+    question : "Choose your bedroom",
+    answerA : "I just sit in the corner...",
+    answerB : "I'm thFFFFFFFFFty",
+    answerC : "I try to socialize and make new friends"
+},
+{
+    Qnumber : 6,
+    question : "How do you beheave at a party?",
+    answerA : "I just sit in the corner...",
+    answerB : "I'm the life of the party",
+    answerC : "I try to socialize and make new friends"
+},
+{
+    Qnumber : 7,
+    question : "HAAAAA",
+    answerA : "I just sit in the corner...",
+    answerB : "I'm FFFFFFFFFFFFFAparty",
+    answerC : "I try to socialize and make new friends"
+},
+{
+    Qnumber : 8,
+    question : "How NNNNNN?",
+    answerA : "I just sit in the corner...",
+    answerB : "I'm AAAAAAAAAAAAAy",
+    answerC : "I try to socialize and make new friends"
+},
+ {
+    Qnumber : 9,
+    question : "How do FFFFFFFeheave at a party?",
+    answerA : "I just sit in the corner...",
+    answerB : "I'mDDDDDDDDDDDty",
+    answerC : "I try to socialize and make new friends"
+}]
+
+
+var i = -1
+document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => {
+      /*  i = i < q1.length - 1 ? i + 1 : 0*/
+    if(i < q1.length ) {
+        i = i + 1
+        document.querySelector(".question1").innerHTML = q1[i].question
+        document.querySelector(".A1").innerHTML = q1[i].answerA
+        document.querySelector(".B1").innerHTML = q1[i].answerB
+        document.querySelector(".C1").innerHTML = q1[i].answerC
+        console.log(q1[i])
+        currentQuestion()
+        }
+    else {
+        alert("OI")
+    }
+
+}))
+function currentQuestion (){
+    document.querySelector(".currentQ").innerHTML = q1[i].Qnumber
+}
+
+
+
+
+
+</script>
+</body>
