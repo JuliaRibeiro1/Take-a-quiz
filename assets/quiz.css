@@ -10,11 +10,16 @@ body {
     padding: 0;
     margin: 0;
 }
+:root {
+    --pink:#da5072;
+    --blue:#7e99f3 ;
+}
 .container {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
     margin-top:20%;
+    
     
    
 }
@@ -24,10 +29,13 @@ body {
     
 }
 .question1 {
-    background-color: rgb(157, 157, 255);
-    text-align: justify;
+    background-color: var(--blue);
+    text-align: center;
     font-size: 2.3rem;
     height: 100px;
+    display: flex;
+    align-items: center;
+    
 
 }
 
@@ -37,29 +45,58 @@ body {
     border: none;
     width: 100%;
     padding:1.5em;
-    border-left: rgb(174, 174, 255) 5px solid;
+    border-left: var(--pink) 5px solid;
     text-align: left;
     margin-bottom: 0.3em;
     
-
 }
-.Q1Container button:hover {
+
+/*.Q1Container button:hover {
     background-color: rgb(97, 97, 255);
     color: white;
-}
+}*/
 .next {
     color:  white;
     background-color: rgb(92, 255, 160);
     border: 2px black solid;
 }
-.show {
-    display: flex;
-    flex-direction: column;
-}
-.hidden {
+.resultBtn {
     display: none;
+    margin: 0 auto;
+    padding: 0.5em;
+    color: white;
+    border: none;
+    background-color: rgb(174, 174, 255);
+    font-size: 2.5rem;
+}
+.resultContainer {
+    display: none;
+    width:90%;
+    margin: 0 auto;
 
 }
+header {
+    margin-bottom: 0.6em;
+    background-color: rgb(250, 250, 250);
+}
+.result {
+    height: 100%;
+}
+.result h2 {
+    font-size: 1.3rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.result .text {
+    font-size: 1.4rem;
+      
+}
+@media (min-width:900px) {
+    .container {
+    margin-top: 10%;
+    }
+}
+
+
 
 
 

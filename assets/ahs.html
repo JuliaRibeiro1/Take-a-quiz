@@ -12,39 +12,52 @@
     <div class="container">
         <div class="quiz">
             <div class="Q1Container">
-                <div><span class="currentQ"></span>/9</div>
+                <div><span class="currentQ">1</span>/9</div>
                 <div class="question1">How do you beheave at a party?</div>
-                        <button class="A1">I just sit in the corner...</button>
-                        <button class="B1">I'm the life of the party</button>
-                        <button class="C1">I try to socialize and make new friends></button>
+                        <div class="responses">
+                            <button class="A1">I just sit in the corner...</button>
+                            <button class="B1">I'm the life of the party</button>
+                            <button class="C1">I try to socialize and make new friends</button>
+                        </div>
+            </div>
+            </div>
+            <button class="resultBtn">result</button>
+            <div class="resultContainer">
+                <div class="result">
+                    <header>
+                        <h1></h1>
+                        <h2></h2>
+                    </header>
+                    <div class="text">
+                        <p></p>
+                    </div>
+                </div>
+                
             </div>
           
    
             
     </div>
-</div>
+
 </div>
 <script>
-
-
-const QUESTION1 = document.querySelector(".question1")
-/*Questions and answers*/
+/*QUESTIONS AND ANSWERS*/
 const q1 = [
 {
     Qnumber : 2,
-    question : "Would you rather be a witch or a ghost?",
-    answerA : "Witch",
-    answerB : "Ghost",
-    answerC : "None",
+    question : "What's your favorite quote?",
+    answerA : "From blood and pain come perfection",
+    answerB : "You can't get power by giving it away. You have to take it yourself.",
+    answerC : "I am perfection",
 
     
 },
  {
     Qnumber : 3,
-    question : "Pick one color",
-    answerA : "Pink",
-    answerB : "Red",
-    answerC : "White"
+    question : "What infuriates you the most?",
+    answerA : "When my needs aren't being met",
+    answerB : "Betrayal",
+    answerC : "Reject"
 },
 {
     Qnumber : 4,
@@ -56,43 +69,60 @@ const q1 = [
 {
     Qnumber : 5,
     question : "Choose your bedroom",
-    answerA : "I just sit in the corner...",
+    answerA : "dddd",
     answerB : "I'm thFFFFFFFFFty",
     answerC : "I try to socialize and make new friends"
 },
 {
     Qnumber : 6,
-    question : "How do you beheave at a party?",
-    answerA : "I just sit in the corner...",
-    answerB : "I'm the life of the party",
-    answerC : "I try to socialize and make new friends"
+    question : "Where do you prefer to spend your time ?",
+    answerA : "In nice, luxurious surroundings",
+    answerB : "In the wilderness",
+    answerC : "in the basement"
 },
 {
     Qnumber : 7,
-    question : "HAAAAA",
-    answerA : "I just sit in the corner...",
-    answerB : "I'm FFFFFFFFFFFFFAparty",
-    answerC : "I try to socialize and make new friends"
+    question : "Choose one murder weapon",
+    answerA : "Knife",
+    answerB : "Gun",
+    answerC : "My hands"
 },
 {
     Qnumber : 8,
-    question : "How NNNNNN?",
-    answerA : "I just sit in the corner...",
-    answerB : "I'm AAAAAAAAAAAAAy",
-    answerC : "I try to socialize and make new friends"
+    question : "If someone cheats on you, what do you do ?",
+    answerA : "Kill them",
+    answerB : "Pretend nothing happened while plotting your revenge",
+    answerC : "Why would anyone ever cheat on me ??"
 },
  {
     Qnumber : 9,
-    question : "How do FFFFFFFeheave at a party?",
-    answerA : "I just sit in the corner...",
-    answerB : "I'mDDDDDDDDDDDty",
-    answerC : "I try to socialize and make new friends"
+    question : "Whats the most important thing to you?",
+    answerA : "Money",
+    answerB : "Power",
+    answerC : "Having everyhting I want"
 }]
+ //RESULTS TEXT
+ const result = [
+{
+    characterName: "Madison Montgomery",
+    season: "FROM SEASON 3 (COVEN)",
+    text : " You are sarcastic, manipulative, and egotistical. On rare occasions, you displays remorse for yout actions or pity for the unfortunate, but usually it is later discovered that you “opening up” was just a ploy for your own gain. If there's any humanity, it is buried deep."
+},
+{
+    characterName: "Kai Anderson",
+    season: "FROM SEASON 7 (CULT)",
+    text: "You are power hungry, unhinged and aggressive. You are able to use his charisma and intelligence to manipulate people. You want to destroy the world, believing that destruction is the only way it can be rebuilt on your image. You believes strength, power and chaos are really important."
+}, 
+{  
+    characterName: "Dandy Mott",
+    season: "FROM SEASON 4 (FREAK SHOW)",
+    text: "You may be physically beautiful, but it is in no way reflected by your personality, and metaphorically, you are the most rotten apple of your family tree. You are emotionally and psychologically disturbed, along with being a scion who finds passion in violence"
 
-
-var i = -1
+}
+ ]
+//QUESTION SLIDER
+/*var i = -1
 document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => {
-      /*  i = i < q1.length - 1 ? i + 1 : 0*/
     if(i < q1.length ) {
         i = i + 1
         document.querySelector(".question1").innerHTML = q1[i].question
@@ -100,20 +130,153 @@ document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListen
         document.querySelector(".B1").innerHTML = q1[i].answerB
         document.querySelector(".C1").innerHTML = q1[i].answerC
         console.log(q1[i])
+        slideRigth()
         currentQuestion()
+        
+        
+        
         }
+        
     else {
-        alert("OI")
+        document.querySelector(".Q1Container").style.display = "none"
+        document.querySelector(".resultBtn").style.display = "flex"
+
     }
 
+}))*/
+//RANDOM QUESTIONS
+var i = -1
+document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => {
+   if(i < q1.length ) {
+       
+        let randomQ = Math.floor(Math.random()* q1.length)
+        let random = q1.splice(randomQ,1)
+        i = i + 1
+        document.querySelector(".question1").innerHTML = q1[randomQ].question
+        document.querySelector(".A1").innerHTML = q1[randomQ].answerA
+        document.querySelector(".B1").innerHTML = q1[randomQ].answerB
+        document.querySelector(".C1").innerHTML = q1[randomQ].answerC
+        
+        console.log(random)
+        slideRigth()
+        currentQuestion()
+        
+        
+        
+   }
+        
+    /*else {
+        document.querySelector(".Q1Container").style.display = "none"
+        document.querySelector(".resultBtn").style.display = "flex"
+
+    }*/
 }))
+//CURRENT QUESTION
 function currentQuestion (){
+    
     document.querySelector(".currentQ").innerHTML = q1[i].Qnumber
+    const numberQ = q1[i].Qnumber
+    slideLeft()
+        
+   
+   
+
+} 
+setInterval(slideRigth,100)
+//MOVEMENT   
+const buttonA = document.querySelector(".A1")
+const buttonB = document.querySelector(".B1")
+const buttonC = document.querySelector(".C1")
+
+
+function slideLeft() {
+        buttonA.style.cssText = "transform:translate(7%);color:white"
+        buttonB.style.cssText = "transform:translate(5%);color:white"
+        buttonC.style.cssText = "transform:translate(3%);color:white"   
+    
 }
+function slideRigth() {
+        buttonA.style.cssText = "transform:translate(0%);transition:2s;color:black;"
+        buttonB.style.cssText = "transform:translate(0%);transition:2s;color:black;"
+        buttonC.style.cssText = "transform:translate(0%);transition:2s;color:black;"
+       
+}
+/*function slideRigth() {
+    const buttons = document.querySelectorAll(".Q1Container button")
+    for(var j = 0; j < buttons.length; j++) {
+        buttons[j].style.cssText = "transform:translate(5%);color:white"
+       
+        
+        
+    }
+}
+function slideLeft() {
+    const buttons = document.querySelectorAll(".Q1Container button")
+    for(var j = 0; j < buttons.length; j++) {
+        buttons[j].style.cssText = "transform:translate(0%);transition:2s;color:black"
+        
+    }
+}
+
+*/
+
+//RESULT
+var counterA = 0 
+var counterB = 0
+var counterC = 0
+document.querySelector(".A1").addEventListener("click", () => {
+  counterA++ 
+  
+  
+    
+})
+
+document.querySelector(".B1").addEventListener("click", () => {
+  counterB++ 
+      
+    
+})
+document.querySelector(".C1").addEventListener("click", () => {
+  counterC++ 
+  
+    
+})
+document.querySelector(".resultBtn").addEventListener("click",() =>{
+    document.querySelector(".Q1Container").style.display = "none"
+    document.querySelector(".resultContainer").style.display = "flex"
+    document.querySelector(".resultBtn").style.display = "none"
+    if (counterA > 4) {
+        document.querySelector(".result h1").innerHTML = result[0].characterName
+        document.querySelector(".result h2").innerHTML = result[0].season
+        document.querySelector(".text").innerHTML = result[0].text
+    }
+    else if (counterB > 4) {
+        document.querySelector(".result h1").innerHTML = result[1].characterName
+        document.querySelector(".result h2").innerHTML = result[1].season
+        document.querySelector(".text").innerHTML = result[1].text
+    }
+    else if (counterC > 4) {
+        document.querySelector(".result h1").innerHTML = result[2].characterName
+        document.querySelector(".result h2").innerHTML = result[2].season
+        document.querySelector(".text").innerHTML = result[2].text
+    }
+    else {
+        let randomResult = Math.floor(Math.random()* result.length)
+        console.log(result[randomResult])
+        document.querySelector(".result h1").innerHTML = result[randomResult].characterName
+        document.querySelector("header h2").innerHTML = result[randomResult].season
+        document.querySelector(".text").innerHTML = result[randomResult].text
+        
+    }
+})
+
+
+
+
+
 
 
 
 
 
 </script>
-</body>

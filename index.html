@@ -5,47 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
     
-    <div class="header">
-      <!--  <nav>
-            <button>About us</button>
-            <button>Home</button>
-        </nav>-->
+    </nav>
+    <div class="container">
+        <nav>
+            <button class="logo">Loremipsum</button>
+            <button class="abtUsBtn">About us</button>
+            <button class="homeBtn">Home</button>
+        </nav>
+        <h1>QUIZZES</h1> 
+            <div class="slideContainer">  
+                
+            <div class="slider"><img src="images/ahs-cover.webp" alt="">
+            <h2>Which American Horror Story villain would you be?</h2></div>
+            <button class="prev"><img src="images/nextImg.png" alt=""></button>
+            <button class="next"><img src="images/nextImg.png" alt="next"></button>
+            </div>
+        <footer>
+            <div>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur.</li>
+                    <li>Lorem ipsum dolor sit.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, possimus!</li>
+                </ul>
+            </div>
+            <div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque similique cumque aut repellendus quae tempore velit enim. Libero, ducimus nemo! Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                </p>
+            </div>
+        </footer>
 
-        <div class="homeP">
-            <div class="slideContainer">
-            <div class="slider"><img src="" alt=""></div>
-            <button class="prev">previous</button>
-            <button class="next">next</button>
-            </div>
-            
         </div>
-        <!--<div class="search"><input type="search" name="" id=""></div>-->
-    </div>
+        
+   
     
     
-    <!--<div class="quizzes">
-        <h2>Tv shows</h2>
-        <div class="tvShows"> 
-            <div class="container">
-                <button id="ahs"><img src="images/ahs-cover.webp" alt="American horror story"><h3>American horror story</h3></button>
-                <button id="chicagoFire"><img src="images/chicago fire.png" alt="Chicago fire"><h3>Chicago fire</h3></button>
-                <button id="oitnb"><img src="images/p-oitnb.webp" alt="Orange is the new black"><h3>Orange is the new black</h3></button>
-            </div>
-        </div>
-    </div>
-       
-        </div>-->
+    <!-- Icon by Raj Dev on freeicons.io<div class="quizzes">-->
 <script>
 
 const imgs = [
 
 {
     img : "images/chicago fire.png",
-    text : "Who would you be in American Horror Story?",
+    text : "Which American Horror Story villain would you be?",
 },
 {
     img : "images/p-oitnb.webp",
@@ -53,28 +62,49 @@ const imgs = [
 },
 {
     img : "images/ahs-cover.webp",
-    text : "Who would you be in American Horror Story?",
+    text : "Which American Horror Story villain would you be?",
 }
 
 ]
 var i = 0
 document.querySelector(".next").addEventListener("click",() => {
-    if(i <= imgs.length ) {
+    if ( i < imgs.length) {
         document.querySelector(".slider img").src = imgs[i++].img
-        console.log(imgs)
-        
-   }
-    else {
-       i = 0
+        document.querySelector(".slideContainer h2").innerHTML = imgs[i++].text
+        console.log(imgs[i]) 
     }
-})
-document.querySelector(".prev").addEventListener("click",() => {
-    document.querySelector(".slider img").src = imgs[i--].img
-    console.log(imgs[i--])
+    else {
+        i  = 0
+    }
     
-   
 })
 
+document.querySelector(".prev").addEventListener("click",() => {
+    if(i > -1) {  
+    document.querySelector(".slider img").src = imgs[i--].img  
+    console.log(imgs)
+    document.querySelector(".prev").style.display = "inline"
+    }
+    
+   else{
+       document.querySelector(".prev").style.display = "none"
+       
+    } 
+})
+const imgSlider = document.querySelector(".slider img")
+imgSlider.addEventListener("click",() =>{
+    if(imgSlider.getAttribute("src") === "images/ahs-cover.webp"){
+        location.href = "assets/ahs.html"
+    }
+    else if(imgSlider.getAttribute("src") === "images/chicago fire.png"){
+        location.href = "assets/chicagoFire.html"
+    }
+    else if(imgSlider.getAttribute("src") === "images/p-oitnb.webp"){
+        location.href = "assets/oitnb.html"
+    }
+
+    
+})
 
 
 

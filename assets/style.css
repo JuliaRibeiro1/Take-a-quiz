@@ -1,9 +1,10 @@
 
 :root {
-    --blue:#4765c9;
-    --lightBlue:#6380e2 ;
+    --pink:#da5072;
+    --blue:#6380e2 ;
     
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -12,112 +13,139 @@ body {
     height: 100vh;
     font-size: 30px;
     
+    
+    
 }
 
-.header {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(-78deg,#ffffff,#a75a7a,#ffffff);
-    background-size: cover;
+.container {
+    height: 100vh;
+   
+    
+   /* background: linear-gradient(-78deg,#ffffff,#e4e5e7,#f3f4fd);*/
+    background-color: whitesmoke;
+   
+    
+    
    
 }
 nav {
-    height: 7%;
+    height: 8%;
     width: 100vw;
-    background-color: #4765c9;
+    background-color: rgb(248, 248, 248);
     display: flex;
     justify-content: end;
     position: fixed;
+    box-shadow: 0px 0px 15px grey;
     z-index: 1;
+    
+    
+    
 }
 nav button {
-    width: 30%;
+    width: 20%;
     border-radius: 0.5em;
-    background-color: #4b6bd3;
     color: white;
     border:none;
     height: 100%;
     margin-left:0.2em ;
-
-    
+    font-weight: bold;  
 }
-.slideContainer {
-    width: 100%;
-   
+.abtUsBtn {
+    background-color: var(--pink);
 }
-.slider img {
-    margin-top: 40%;
-    width: 90%;
-    height:90%;
-    
+.homeBtn {
+    background-color: var(--blue);
 }
-.prev , .next {
-    border-radius: 0.5em;
-    border: none;
-}
-/*.tvShows,.random{
-    width: 100%;
-    border-radius: 0.5em;
-    display: flex; 
-    
-}
-.container {
-    width: 100%;
-    flex-direction: column;
-     
-}
-.container button {
-    width: 32%;
-    height: 100%;  
-}
-.container button img{
-    width: 100%;
-    height: 100%;
-    margin-right: 0.6em;
-    background: linear-gradient(rgba(0,0,0),rgba(0,0,0),rgba(0,0,0)100%);
-}
-.container h3 {
+.logo {
+    background: none;
+    color: black;
+    font-size: 1.6rem;
     position: relative;
-    top: -60%;
-    color: white;
-    font-size: 1.4rem;
-    
+    right: 35%;
+    font-family: 'Sacramento', cursive;  
 }
 .homeP {
-    width: 100%;
     height: 100%;
-    background-color: #4b6bd3;
+    
 }
+h1 {
+    position: relative;
+    top:8%;
+    font-size: 3rem;
+    text-align: center;  
+}
+ 
 .slideContainer {
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 40px;
+   
+}
+.slideContainer h2 {
+    font-size: 1.5rem;
+    position: absolute;
+    top:25%;
+    width: 80%;
+    text-align: center;
+    color: white;
+    text-shadow: 0px 5px 5px black;
+    
+    
 }
 .slider img {
-    width: 30px;
-    height:100px ;
-}
+    margin-top: 40px;
+    width: 100%;
+    height:200px;
+    max-width: 800px;
+    
 
-/*#ahsCover {
-    background: linear-gradient(rgba(0,0,0.90),(0,0,0,.50),100%);
-    background:url('../images/ahs-cover.webp');
-    background-size: cover;
+     
 }
-#chicagoFire {
-    background: linear-gradient(rgba(0,0,0.50),(0,0,0,.50),100%);
-    background:url('../images/chicago\ fire.png');
-    background-size: cover;
+.prev img {
+   transform: rotate(180deg); 
 }
-#oitnb {
-    background: linear-gradient(rgba(0,0,0.50),(0,0,0,.50),100%);
-    background:url('../images/p-oitnb.webp');
-    background-size: cover;
-
-}*/
-@media (max-width:600px) {
-    .container{
-        flex-direction: row;
+.prev , .next {
+    border-radius: 2em;
+    border: none;
+    width: 10%;
+    position: absolute;
+    top: 30%;
+   
+} 
+.next {
+    left:90%;
+} 
+.prev {
+    left:0%;
+} 
+.prev img,.next img {
+    width: 100%;
+    
+}
+footer {
+    height: fit-content;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--pink);
+    padding: 1em;
+}
+footer div {
+    width: 40%;
+   
+}
+@media (min-width:900px) {
+    .slideContainer h2 {
+        font-size: 3rem;
+        width: 50%;
+        left:20%;
     }
-    .container button {
-        width: 80%;
-        height: 40%;
+    .slider img {
+        position: relative;
+        left: 10%;
+        height: 400px;
+    }
+    .logo {
+        font-size: 2rem;
     }
 }
