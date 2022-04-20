@@ -165,7 +165,6 @@ document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListen
             }
         }
         randomAnswers()
-        console.log(answers)
             document.querySelector(".A1").innerHTML = answers[0]
             document.querySelector(".B1").innerHTML = answers[1]
             document.querySelector(".C1").innerHTML = answers[2]
@@ -222,16 +221,13 @@ var counterB = 0
 var counterC = 0
 
 document.querySelector(".A1").addEventListener("click", () => {
-    console.log(q1[i].answerA)
     if(document.querySelector(".A1").innerHTML == q1[i].answerA) {
         counterA++ 
     }
     else if(document.querySelector(".B1").innerHTML == q1[i].answerA) {
-        console.log("oi")
         counterA++ 
     }
     else if(document.querySelector(".C1").innerHTML == q1[i].answerA) {
-        console.log("oi")
         counterA++ 
     }
 
@@ -239,31 +235,25 @@ document.querySelector(".A1").addEventListener("click", () => {
 })
 
 document.querySelector(".B1").addEventListener("click", () => {
-    console.log(q1[i].answerB)
     if(document.querySelector(".A1").innerHTML == q1[i].answerB) {
         counterB++ 
     }
     else if(document.querySelector(".B1").innerHTML == q1[i].answerB) {
-        console.log("oi")
         counterB++ 
     }
     else if(document.querySelector(".C1").innerHTML == q1[i].answerB) {
-        console.log("oi")
         counterB++ 
     }
     
 })
 document.querySelector(".C1").addEventListener("click", () => {
-    console.log(q1[i].answerC)
     if(document.querySelector(".A1").innerHTML == q1[i].answerC) {
         counterC++ 
     }
     else if(document.querySelector(".B1").innerHTML == q1[i].answerC) {
-        console.log("oi")
         counterC++ 
     }
     else if(document.querySelector(".C1").innerHTML == q1[i].answerC) {
-        console.log("oi")
         counterC++ 
     }
      
@@ -311,7 +301,6 @@ document.querySelector(".resultBtn").addEventListener("click",() =>{
     }
     else {
         let randomResult = Math.floor(Math.random()* result.length)
-        console.log(result[randomResult])
         document.querySelector(".result h1").innerHTML = result[randomResult].characterName
         document.querySelector("header h2").innerHTML = result[randomResult].season
         document.querySelector(".text").innerHTML = result[randomResult].text

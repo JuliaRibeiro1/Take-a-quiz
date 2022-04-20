@@ -22,6 +22,9 @@
             </div>
             </div>
             <button class="resultBtn">result</button>
+            <svg id="cut-circ" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="23" stroke="black" fill="none" />
+              </svg>
             <div class="resultContainer">
                 <div class="result">
                     <header>
@@ -56,7 +59,7 @@ const q1 = [
     Qnumber : 3,
     question : "What makes you angry?",
     answerA : "Screaming children",
-    answerB : "",
+    answerB : "Not being listened to",
     answerC : "Lies"
 },
 {
@@ -122,7 +125,7 @@ const q1 = [
 function randomList() {
 
 let currentIndex = list.length 
-    let randomIndex;
+let randomIndex;
 
      while (currentIndex != 0) {
 
@@ -132,25 +135,37 @@ let currentIndex = list.length
       [list[currentIndex], list[randomIndex]] = [
       list[randomIndex], list[currentIndex]];
      }
-     
-     console.log(list) 
     } 
+
 
 
 //RANDOM QUESTIONS
 let questionsNumber = [2,3,4,5,6,7,8,9]
 var j = -1
 var i = -1
+
 randomList()
+
 document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => {
    if(i < q1.length ) {
-        i = i + 1
-            document.querySelector(".question1").innerHTML = q1[i].question
-            document.querySelector(".A1").innerHTML = q1[i].answerA
-            document.querySelector(".B1").innerHTML = q1[i].answerB
-            document.querySelector(".C1").innerHTML = q1[i].answerC
-   }
-           if(i == 7) {
+    i = i + 1
+        document.querySelector(".question1").innerHTML = q1[i].question
+        let answers = [q1[i].answerA,q1[i].answerB,q1[i].answerC]
+        function randomAnswers () {
+            let currentIndex = answers.length 
+            let randomIndex;
+            while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [answers[currentIndex], answers[randomIndex]] = [
+            answers[randomIndex],answers[currentIndex]];
+            }
+        }
+        randomAnswers()
+            document.querySelector(".A1").innerHTML = answers[0]
+            document.querySelector(".B1").innerHTML = answers[1]
+            document.querySelector(".C1").innerHTML = answers[2]
+        if(i == 7) {
                 document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => { 
                 document.querySelector(".Q1Container").style.display = "none"
                 document.querySelector(".resultBtn").style.display = "flex"
@@ -159,8 +174,9 @@ document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListen
             slideRigth()
             currentQuestion()
             
-        
+        }    
 }))
+
 //CURRENT QUESTION
 
 function currentQuestion (){
@@ -171,10 +187,8 @@ function currentQuestion (){
         slideLeft()
     }
 
-    
 }
 setInterval(slideRigth,100) 
-
 
 //MOVEMENT   
 const buttonA = document.querySelector(".A1")
@@ -182,45 +196,91 @@ const buttonB = document.querySelector(".B1")
 const buttonC = document.querySelector(".C1")
 const questions = document.querySelector(".question1")
 
-
 function slideLeft() {
-        buttonA.style.cssText = "transform:translate(7%);color:white"
-        buttonB.style.cssText = "transform:translate(5%);color:white"
-        buttonC.style.cssText = "transform:translate(3%);color:white" 
-        questions.style.cssText = "color:#7e99f3"
-
-    
+        buttonA.style.cssText = "transform:translate(7%);color:transparent;background-color:transparent"
+        buttonB.style.cssText = "transform:translate(5%);color:transparent;background-color:transparent"
+        buttonC.style.cssText = "transform:translate(3%);color:transparent;background-color:transparent" 
+        questions.style.cssText = "color:#7e99f3;"
 }
 function slideRigth() {
-        buttonA.style.cssText = "transform:translate(0%);transition:2s;color:black;"
-        buttonB.style.cssText = "transform:translate(0%);transition:2s;color:black;"
-        buttonC.style.cssText = "transform:translate(0%);transition:2s;color:black;"
-        questions.style.cssText = "color:grey;transition:2s"
+        buttonA.style.cssText = "transform:translate(0%);transition:1s;color:black;background-color:white"
+        buttonB.style.cssText = "transform:translate(0%);transition:1s;color:black;background-color:white"
+        buttonC.style.cssText = "transform:translate(0%);transition:1s;color:black;background-color:white"
+        questions.style.cssText = "color:grey;transition:2s;"
        
 }
 
 
 //RESULT
+
 var counterA = 0 
 var counterB = 0
 var counterC = 0
+
 document.querySelector(".A1").addEventListener("click", () => {
-  counterA++ 
+    if(document.querySelector(".A1").innerHTML == q1[i].answerA) {
+        counterA++ 
+    }
+    else if(document.querySelector(".B1").innerHTML == q1[i].answerA) {
+        counterA++ 
+    }
+    else if(document.querySelector(".C1").innerHTML == q1[i].answerA) {
+        counterA++ 
+    }
+
     
 })
 
 document.querySelector(".B1").addEventListener("click", () => {
-  counterB++    
+    if(document.querySelector(".A1").innerHTML == q1[i].answerB) {
+        counterB++ 
+    }
+    else if(document.querySelector(".B1").innerHTML == q1[i].answerB) {
+        counterB++ 
+    }
+    else if(document.querySelector(".C1").innerHTML == q1[i].answerB) {
+        counterB++ 
+    }
     
 })
 document.querySelector(".C1").addEventListener("click", () => {
-  counterC++ 
+    if(document.querySelector(".A1").innerHTML == q1[i].answerC) {
+        counterC++ 
+    }
+    else if(document.querySelector(".B1").innerHTML == q1[i].answerC) {
+        counterC++ 
+    }
+    else if(document.querySelector(".C1").innerHTML == q1[i].answerC) {
+        counterC++ 
+    }
      
 })
+const btnM = document.querySelector("#cut-circ")
+const keyFrames = document.createElement("style");
+keyFrames.innerHTML = `
+  @keyframes loading {
+    from {
+      transform: rotate(20deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  #cut-circ {
+    animation: loading 1s ease-in-out infinite;
+  }
+
+ `;
+
 document.querySelector(".resultBtn").addEventListener("click",() =>{
-    document.querySelector(".Q1Container").style.display = "none"
+   document.querySelector("#cut-circ").style.display = "flex"
+    document.querySelector("#cut-circ").appendChild(keyFrames)
+   document.querySelector(".resultBtn").style.display = "none"
+   setTimeout(function() {
+    document.querySelector("#cut-circ").style.display = "none"
     document.querySelector(".resultContainer").style.display = "flex"
     document.querySelector(".resultBtn").style.display = "none"
+    },5000)
     if (counterA > 4) {
         document.querySelector(".result h1").innerHTML = result[0].characterName
         document.querySelector(".text").innerHTML = result[0].text
@@ -235,7 +295,6 @@ document.querySelector(".resultBtn").addEventListener("click",() =>{
     }
     else {
         let randomResult = Math.floor(Math.random()* result.length)
-        console.log(result[randomResult])
         document.querySelector(".result h1").innerHTML = result[randomResult].characterName
         document.querySelector(".text").innerHTML = result[randomResult].text
         
@@ -243,5 +302,4 @@ document.querySelector(".resultBtn").addEventListener("click",() =>{
 })
     
 </script>
-
         
