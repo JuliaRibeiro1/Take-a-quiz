@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quiz.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="quiz">
+            <div class="Q1Container">
+                <div><span class="currentQ">1</span>/9</div>
+                <div class="question1">What would you say is your greatest quality?</div>
+                        <div class="responses">
+                            <button class="A1">Intelligence</button>
+                            <button class="B1">Kindness</button>
+                            <button class="C1">Humor</button>
+                        </div>
+            </div>
+            </div>
+            <button class="resultBtn">result</button>
+            <div class="resultContainer">
+                <div class="result">
+                    <header>
+                        <h1></h1>
+                        <h2></h2>
+                    </header>
+                    <div class="text">
+                        <p></p>
+                    </div>
+                </div>
+                
+            </div>
+          
+   
+            
+    </div>
+
+</div>
+<script>
+/*QUESTIONS AND ANSWERS*/
+const q1 = [
+{
+    Qnumber : 2,
+    question : "What's your favorite quote?",
+    answerA : "From blood and pain come perfection",
+    answerB : "You can't get power by giving it away. You have to take it yourself.",
+    answerC : "I am perfection",
+
+    
+},
+  
+{   Qnumber : 3,
+    question : "You’ve got to keep busy while serving time! Where would you prefer to work?",
+    answerA : "Library",
+    answerB : "Kitchen",
+    answerC : "Construction"
+},
+{
+    Qnumber : 4,
+    question : "You’re most likely to end up in jail for...",
+    answerA : "Money laundering",
+    answerB : "Trespassing",
+    answerC : "Organized crime"
+},
+{
+    Qnumber : 5,
+    question : "What piece of contraband would you risk going to the SHU to obtain?",
+    answerA : "Eyeliner",
+    answerB : "Snacks",
+    answerC : "Whatever contraband someone asked me to get for them"
+},
+{
+    Qnumber : 6,
+    question : "How would you react if you found out your lover was cheating on you?",
+    answerA : "I'd plan my revenge",
+    answerB : "I'd feel wounded and sick for days",
+    answerC : "Confront them"
+},
+{
+    Qnumber : 7,
+    question : "Your style is:",
+    answerA : "A badass chick",
+    answerB : "All woman",
+    answerC : "Comfortable"
+},
+{
+    Qnumber : 8,
+    question : "What is your least favorite part about prison?",
+    answerA : "The living conditions",
+    answerB : "The food",
+    answerC : "The guard"
+},
+ {
+    Qnumber : 9,
+    question : "What do you miss most about life on the outside?",
+    answerA : "Peace and quite",
+    answerB : "My significant other",
+    answerC : "Traveling"
+}]
+ //RESULTS TEXT
+ const result = [
+{
+    characterName: "Alex Vause",
+    text : "You are snarky, manipulative and street smart. While you do associate with other inmates, you keep to yourself emotionally, although you are not afraid to fight back if provoked. You are often seen with a book in hand as you love reading."
+},
+{
+    characterName: "Poussey",
+    text: "You are deeply principled and stands up unabashedly for what you believes in. You are an intelligent, outspoken, and caring woman who stood by your convictions. You like to joke around with your fellow inmates and tended to avoid confrontation and violence."
+}, 
+{  
+    characterName: "Nicky Nichols",
+    text: "You are sarcastic and tough on the outside, but also profoundly smart, kind, wise, and down-to-earth. Your impulsivity and yourloud mouth get you into trouble in earlier seasons, but you are able to sand down some of your rougher edges and become more stable. You are perceptive and fiercely intelligent, and is able to provide the other prisoners with good advice."
+
+}
+ ]
+ let list = q1 ;
+function randomList() {
+
+let currentIndex = list.length 
+    let randomIndex;
+
+     while (currentIndex != 0) {
+
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+      [list[currentIndex], list[randomIndex]] = [
+      list[randomIndex], list[currentIndex]];
+     }
+     
+     console.log(list) 
+    } 
+
+
+//RANDOM QUESTIONS
+let questionsNumber = [2,3,4,5,6,7,8,9]
+var j = -1
+var i = -1
+randomList()
+document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => {
+   if(i < q1.length ) {
+        i = i + 1
+            document.querySelector(".question1").innerHTML = q1[i].question
+            document.querySelector(".A1").innerHTML = q1[i].answerA
+            document.querySelector(".B1").innerHTML = q1[i].answerB
+            document.querySelector(".C1").innerHTML = q1[i].answerC
+   }
+           if(i == 7) {
+                document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => { 
+                document.querySelector(".Q1Container").style.display = "none"
+                document.querySelector(".resultBtn").style.display = "flex"
+                }))
+            }
+            slideRigth()
+            currentQuestion()
+            
+        
+}))
+//CURRENT QUESTION
+
+function currentQuestion (){
+    if(j < questionsNumber.length) {
+        j = j + 1
+        let number = document.querySelector(".currentQ")
+        number.innerHTML = questionsNumber[j]
+        slideLeft()
+    }
+
+    
+}
+setInterval(slideRigth,100) 
+
+
+//MOVEMENT   
+const buttonA = document.querySelector(".A1")
+const buttonB = document.querySelector(".B1")
+const buttonC = document.querySelector(".C1")
+const questions = document.querySelector(".question1")
+
+
+function slideLeft() {
+        buttonA.style.cssText = "transform:translate(7%);color:white"
+        buttonB.style.cssText = "transform:translate(5%);color:white"
+        buttonC.style.cssText = "transform:translate(3%);color:white" 
+        questions.style.cssText = "color:#7e99f3"
+
+    
+}
+function slideRigth() {
+        buttonA.style.cssText = "transform:translate(0%);transition:2s;color:black;"
+        buttonB.style.cssText = "transform:translate(0%);transition:2s;color:black;"
+        buttonC.style.cssText = "transform:translate(0%);transition:2s;color:black;"
+        questions.style.cssText = "color:grey;transition:2s"
+       
+}
+
+
+//RESULT
+var counterA = 0 
+var counterB = 0
+var counterC = 0
+document.querySelector(".A1").addEventListener("click", () => {
+  counterA++ 
+    
+})
+
+document.querySelector(".B1").addEventListener("click", () => {
+  counterB++    
+    
+})
+document.querySelector(".C1").addEventListener("click", () => {
+  counterC++ 
+     
+})
+document.querySelector(".resultBtn").addEventListener("click",() =>{
+    document.querySelector(".Q1Container").style.display = "none"
+    document.querySelector(".resultContainer").style.display = "flex"
+    document.querySelector(".resultBtn").style.display = "none"
+    if (counterA > 4) {
+        document.querySelector(".result h1").innerHTML = result[0].characterName
+        document.querySelector(".text").innerHTML = result[0].text
+    }
+    else if (counterB > 4) {
+        document.querySelector(".result h1").innerHTML = result[1].characterName
+        document.querySelector(".text").innerHTML = result[1].text
+    }
+    else if (counterC > 4) {
+        document.querySelector(".result h1").innerHTML = result[2].characterName
+        document.querySelector(".text").innerHTML = result[2].text
+    }
+    else {
+        let randomResult = Math.floor(Math.random()* result.length)
+        console.log(result[randomResult])
+        document.querySelector(".result h1").innerHTML = result[randomResult].characterName
+        document.querySelector(".text").innerHTML = result[randomResult].text
+        
+    }
+})
+    
+</script>

@@ -24,8 +24,10 @@
                 
             <div class="slider"><img src="images/ahs-cover.webp" alt="">
             <h2>Which American Horror Story villain would you be?</h2></div>
-            <button class="prev"><img src="images/nextImg.png" alt=""></button>
-            <button class="next"><img src="images/nextImg.png" alt="next"></button>
+            <div class="nextPrevBtn">
+                <button class="prev"><img src="images/nextImg.png" alt=""></button>
+                <button class="next"><img src="images/nextImg.png" alt="next"></button>
+            </div>
             </div>
         <footer>
             <div>
@@ -54,42 +56,41 @@ const imgs = [
 
 {
     img : "images/chicago fire.png",
-    text : "Which American Horror Story villain would you be?",
+    text : "Who are you on chicago fire?",
 },
 {
     img : "images/p-oitnb.webp",
-    text : "Who would you be in American Horror Story?",
+    text : "Which OITNB character are you?",
 },
 {
     img : "images/ahs-cover.webp",
     text : "Which American Horror Story villain would you be?",
 }
-
 ]
+//NEXT AND PREV BUTTONS
+var container = document.querySelector(".slider")
 var i = 0
 document.querySelector(".next").addEventListener("click",() => {
-    if ( i < imgs.length) {
-        document.querySelector(".slider img").src = imgs[i++].img
-        document.querySelector(".slideContainer h2").innerHTML = imgs[i++].text
-        console.log(imgs[i]) 
+        document.querySelector(".slideContainer h2").innerHTML = imgs[i].text
+        document.querySelector(".slider img").src = imgs[i].img
+        i = i + 1
+        
+    if(i == imgs.length) {
+        i = 0
     }
-    else {
-        i  = 0
-    }
-    
 })
 
+
 document.querySelector(".prev").addEventListener("click",() => {
-    if(i > -1) {  
-    document.querySelector(".slider img").src = imgs[i--].img  
-    console.log(imgs)
-    document.querySelector(".prev").style.display = "inline"
+        document.querySelector(".slider img").src = imgs[i].img  
+        console.log(imgs)
+        document.querySelector(".prev").style.display = "inline"
+        i = i - 1
+    if(i < 0) {
+        i = imgs.length - 1
+       
     }
     
-   else{
-       document.querySelector(".prev").style.display = "none"
-       
-    } 
 })
 const imgSlider = document.querySelector(".slider img")
 imgSlider.addEventListener("click",() =>{
@@ -106,17 +107,7 @@ imgSlider.addEventListener("click",() =>{
     
 })
 
-
-
-/*document.querySelector('#ahs').addEventListener("click",() => {
-    location.href = "assets/ahs.html"
-})
-document.querySelector('#chicagoFire').addEventListener("click",() => {
-    location.href = "assets/chicagoFire.html"
-})
-document.querySelector('#oitnb').addEventListener("click",() => {
-    location.href = "oitnb.html"
-})  */ 
+ 
 </script>
 </body>
 </html>

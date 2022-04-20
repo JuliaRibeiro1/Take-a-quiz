@@ -15,13 +15,16 @@
                 <div><span class="currentQ">1</span>/9</div>
                 <div class="question1">How do you beheave at a party?</div>
                         <div class="responses">
-                            <button class="A1">I just sit in the corner...</button>
-                            <button class="B1">I'm the life of the party</button>
+                            <button class="A1">I'm the life of the party</button>
+                            <button class="B1">I just sit in the corner...</button>
                             <button class="C1">I try to socialize and make new friends</button>
                         </div>
             </div>
             </div>
-            <button class="resultBtn">result</button>
+            <button class="resultBtn"><h2>Result</h2></button>
+            <svg id="cut-circ" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="23" stroke="black" fill="none" />
+              </svg>
             <div class="resultContainer">
                 <div class="result">
                     <header>
@@ -41,6 +44,7 @@
 
 </div>
 <script>
+
 /*QUESTIONS AND ANSWERS*/
 const q1 = [
 {
@@ -49,9 +53,9 @@ const q1 = [
     answerA : "From blood and pain come perfection",
     answerB : "You can't get power by giving it away. You have to take it yourself.",
     answerC : "I am perfection",
-
-    
+        
 },
+
  {
     Qnumber : 3,
     question : "What infuriates you the most?",
@@ -68,10 +72,10 @@ const q1 = [
 },
 {
     Qnumber : 5,
-    question : "Choose your bedroom",
-    answerA : "dddd",
-    answerB : "I'm thFFFFFFFFFty",
-    answerC : "I try to socialize and make new friends"
+    question : "Pick one color",
+    answerA : "Black",
+    answerB : "Blue",
+    answerC : "Red"
 },
 {
     Qnumber : 6,
@@ -117,134 +121,179 @@ const q1 = [
     characterName: "Dandy Mott",
     season: "FROM SEASON 4 (FREAK SHOW)",
     text: "You may be physically beautiful, but it is in no way reflected by your personality, and metaphorically, you are the most rotten apple of your family tree. You are emotionally and psychologically disturbed, along with being a scion who finds passion in violence"
-
 }
  ]
-//QUESTION SLIDER
-/*var i = -1
-document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => {
-    if(i < q1.length ) {
-        i = i + 1
-        document.querySelector(".question1").innerHTML = q1[i].question
-        document.querySelector(".A1").innerHTML = q1[i].answerA
-        document.querySelector(".B1").innerHTML = q1[i].answerB
-        document.querySelector(".C1").innerHTML = q1[i].answerC
-        console.log(q1[i])
-        slideRigth()
-        currentQuestion()
-        
-        
-        
-        }
-        
-    else {
-        document.querySelector(".Q1Container").style.display = "none"
-        document.querySelector(".resultBtn").style.display = "flex"
 
-    }
+let list = q1 ;
+function randomList() {
 
-}))*/
+let currentIndex = list.length 
+let randomIndex;
+
+     while (currentIndex != 0) {
+
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+      [list[currentIndex], list[randomIndex]] = [
+      list[randomIndex], list[currentIndex]];
+     }
+    } 
+
+
+
 //RANDOM QUESTIONS
+let questionsNumber = [2,3,4,5,6,7,8,9]
+var j = -1
 var i = -1
+
+randomList()
+
 document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => {
    if(i < q1.length ) {
-       
-        let randomQ = Math.floor(Math.random()* q1.length)
-        let random = q1.splice(randomQ,1)
-        i = i + 1
-        document.querySelector(".question1").innerHTML = q1[randomQ].question
-        document.querySelector(".A1").innerHTML = q1[randomQ].answerA
-        document.querySelector(".B1").innerHTML = q1[randomQ].answerB
-        document.querySelector(".C1").innerHTML = q1[randomQ].answerC
-        
-        console.log(random)
-        slideRigth()
-        currentQuestion()
-        
-        
-        
-   }
-        
-    /*else {
-        document.querySelector(".Q1Container").style.display = "none"
-        document.querySelector(".resultBtn").style.display = "flex"
-
-    }*/
+    i = i + 1
+        document.querySelector(".question1").innerHTML = q1[i].question
+        let answers = [q1[i].answerA,q1[i].answerB,q1[i].answerC]
+        function randomAnswers () {
+            let currentIndex = answers.length 
+            let randomIndex;
+            while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [answers[currentIndex], answers[randomIndex]] = [
+            answers[randomIndex],answers[currentIndex]];
+            }
+        }
+        randomAnswers()
+        console.log(answers)
+            document.querySelector(".A1").innerHTML = answers[0]
+            document.querySelector(".B1").innerHTML = answers[1]
+            document.querySelector(".C1").innerHTML = answers[2]
+        if(i == 7) {
+                document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => { 
+                document.querySelector(".Q1Container").style.display = "none"
+                document.querySelector(".resultBtn").style.display = "flex"
+                }))
+            }
+            slideRigth()
+            currentQuestion()
+            
+        }    
 }))
-//CURRENT QUESTION
-function currentQuestion (){
-    
-    document.querySelector(".currentQ").innerHTML = q1[i].Qnumber
-    const numberQ = q1[i].Qnumber
-    slideLeft()
-        
-   
-   
 
-} 
-setInterval(slideRigth,100)
+//CURRENT QUESTION
+
+function currentQuestion (){
+    if(j < questionsNumber.length) {
+        j = j + 1
+        let number = document.querySelector(".currentQ")
+        number.innerHTML = questionsNumber[j]
+        slideLeft()
+    }
+
+}
+setInterval(slideRigth,100) 
+
 //MOVEMENT   
 const buttonA = document.querySelector(".A1")
 const buttonB = document.querySelector(".B1")
 const buttonC = document.querySelector(".C1")
-
+const questions = document.querySelector(".question1")
 
 function slideLeft() {
-        buttonA.style.cssText = "transform:translate(7%);color:white"
-        buttonB.style.cssText = "transform:translate(5%);color:white"
-        buttonC.style.cssText = "transform:translate(3%);color:white"   
-    
+        buttonA.style.cssText = "transform:translate(7%);color:transparent;background-color:transparent"
+        buttonB.style.cssText = "transform:translate(5%);color:transparent;background-color:transparent"
+        buttonC.style.cssText = "transform:translate(3%);color:transparent;background-color:transparent" 
+        questions.style.cssText = "color:#7e99f3;"
 }
 function slideRigth() {
-        buttonA.style.cssText = "transform:translate(0%);transition:2s;color:black;"
-        buttonB.style.cssText = "transform:translate(0%);transition:2s;color:black;"
-        buttonC.style.cssText = "transform:translate(0%);transition:2s;color:black;"
+        buttonA.style.cssText = "transform:translate(0%);transition:1s;color:black;background-color:white"
+        buttonB.style.cssText = "transform:translate(0%);transition:1s;color:black;background-color:white"
+        buttonC.style.cssText = "transform:translate(0%);transition:1s;color:black;background-color:white"
+        questions.style.cssText = "color:grey;transition:2s;"
        
-}
-/*function slideRigth() {
-    const buttons = document.querySelectorAll(".Q1Container button")
-    for(var j = 0; j < buttons.length; j++) {
-        buttons[j].style.cssText = "transform:translate(5%);color:white"
-       
-        
-        
-    }
-}
-function slideLeft() {
-    const buttons = document.querySelectorAll(".Q1Container button")
-    for(var j = 0; j < buttons.length; j++) {
-        buttons[j].style.cssText = "transform:translate(0%);transition:2s;color:black"
-        
-    }
 }
 
-*/
 
 //RESULT
+
 var counterA = 0 
 var counterB = 0
 var counterC = 0
+
 document.querySelector(".A1").addEventListener("click", () => {
-  counterA++ 
-  
-  
+    console.log(q1[i].answerA)
+    if(document.querySelector(".A1").innerHTML == q1[i].answerA) {
+        counterA++ 
+    }
+    else if(document.querySelector(".B1").innerHTML == q1[i].answerA) {
+        console.log("oi")
+        counterA++ 
+    }
+    else if(document.querySelector(".C1").innerHTML == q1[i].answerA) {
+        console.log("oi")
+        counterA++ 
+    }
+
     
 })
 
 document.querySelector(".B1").addEventListener("click", () => {
-  counterB++ 
-      
+    console.log(q1[i].answerB)
+    if(document.querySelector(".A1").innerHTML == q1[i].answerB) {
+        counterB++ 
+    }
+    else if(document.querySelector(".B1").innerHTML == q1[i].answerB) {
+        console.log("oi")
+        counterB++ 
+    }
+    else if(document.querySelector(".C1").innerHTML == q1[i].answerB) {
+        console.log("oi")
+        counterB++ 
+    }
     
 })
 document.querySelector(".C1").addEventListener("click", () => {
-  counterC++ 
-  
-    
+    console.log(q1[i].answerC)
+    if(document.querySelector(".A1").innerHTML == q1[i].answerC) {
+        counterC++ 
+    }
+    else if(document.querySelector(".B1").innerHTML == q1[i].answerC) {
+        console.log("oi")
+        counterC++ 
+    }
+    else if(document.querySelector(".C1").innerHTML == q1[i].answerC) {
+        console.log("oi")
+        counterC++ 
+    }
+     
 })
+const btnM = document.querySelector("#cut-circ")
+const keyFrames = document.createElement("style");
+keyFrames.innerHTML = `
+  @keyframes loading {
+    from {
+      transform: rotate(20deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  #cut-circ {
+    animation: loading 1s ease-in-out infinite;
+  }
+
+ `;
+
 document.querySelector(".resultBtn").addEventListener("click",() =>{
-    document.querySelector(".Q1Container").style.display = "none"
+   document.querySelector("#cut-circ").style.display = "flex"
+    document.querySelector("#cut-circ").appendChild(keyFrames)
+   document.querySelector(".resultBtn").style.display = "none"
+   setTimeout(function() {
+    document.querySelector("#cut-circ").style.display = "none"
     document.querySelector(".resultContainer").style.display = "flex"
     document.querySelector(".resultBtn").style.display = "none"
+    },5000)
     if (counterA > 4) {
         document.querySelector(".result h1").innerHTML = result[0].characterName
         document.querySelector(".result h2").innerHTML = result[0].season
@@ -269,14 +318,6 @@ document.querySelector(".resultBtn").addEventListener("click",() =>{
         
     }
 })
-
-
-
-
-
-
-
-
-
-
+    
 </script>
+

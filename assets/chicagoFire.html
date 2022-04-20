@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quiz.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="quiz">
+            <div class="Q1Container">
+                <div><span class="currentQ">1</span>/9</div>
+                <div class="question1">What do you like to do in your free time</div>
+                        <div class="responses">
+                            <button class="A1">Watch TV</button>
+                            <button class="B1">Go out with my friends</button>
+                            <button class="C1">I try to socialize and make new friends</button>
+                        </div>
+            </div>
+            </div>
+            <button class="resultBtn">result</button>
+            <div class="resultContainer">
+                <div class="result">
+                    <header>
+                        <h1></h1>
+                        <h2></h2>
+                    </header>
+                    <div class="text">
+                        <p></p>
+                    </div>
+                </div>
+                
+            </div>
+          
+   
+            
+    </div>
+
+</div>
+<script>
+/*QUESTIONS AND ANSWERS*/
+const q1 = [
+{
+    Qnumber : 2,
+    question : "What's your strength?",
+    answerA : "Thrusworthiness",
+    answerB : "Discipline",
+    answerC : "Dedication",
+
+    
+},
+ {
+    Qnumber : 3,
+    question : "What makes you angry?",
+    answerA : "Screaming children",
+    answerB : "",
+    answerC : "Lies"
+},
+{
+    Qnumber : 4,
+    question : "If you could choose to do anything for a day, what would it be?",
+    answerA : "Playing games",
+    answerB : "Working",
+    answerC : "Doing sports"
+},
+{
+    Qnumber : 5,
+    question : "How many days would you live on a deserted island?",
+    answerA : "I would die the first day",
+    answerB : "I would last several months",
+    answerC : "I would live all my life"
+},
+{
+    Qnumber : 6,
+    question : "How would your friends describe you?",
+    answerA : "Funny",
+    answerB : "Loyal",
+    answerC : "Strong"
+},
+{
+    Qnumber : 7,
+    question : "What’s the best way to start the day?",
+    answerA : "Coffe",
+    answerB : "Eat healthy breakfast",
+    answerC : "Sports"
+},
+{
+    Qnumber : 8,
+    question : "Would you be a firefighter or a paramedic?",
+    answerA : "I would be both if I could",
+    answerB : "Firefighter",
+    answerC : "Paramedic?"
+},
+ {
+    Qnumber : 9,
+    question : "What's your favorite drink?",
+    answerA : "Beer",
+    answerB : "Tequila",
+    answerC : "Wine"
+}]
+ //RESULTS TEXT
+ const result = [
+{
+    characterName: "Christopher Herrmann",
+    text : "You believe in people and expresses your emotions to persuade, influence, and to make a difference. You love people. Anyone with five kids has to be free to share love and to inspire those around him to want to want better for themselves."
+},
+{
+    characterName: "Matthew Casey",
+    text: "You are rule-follower – and although it will affect your relationships, you will enforce the rules.  “Unemotional” isn’t the most accurate adjective to describe your “C-Motivated” leader – You keep your emotions in-check and doesn’t allow them to influence your structure, routine, and decisions. "
+}, 
+{  
+    characterName: "Sylvie Brett",
+    text: "Your patience and gentle persona paints you as the perfect Florence Nightingale of Ambo 61.  You covers for the erratic-ness of your friends and colleagues because you don't like conflict or confrontation – you are a peaceful zen-like being. You are cooperative and a team player – but you will not compromise more than once."
+
+}
+ ]
+
+ let list = q1 ;
+function randomList() {
+
+let currentIndex = list.length 
+    let randomIndex;
+
+     while (currentIndex != 0) {
+
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+      [list[currentIndex], list[randomIndex]] = [
+      list[randomIndex], list[currentIndex]];
+     }
+     
+     console.log(list) 
+    } 
+
+
+//RANDOM QUESTIONS
+let questionsNumber = [2,3,4,5,6,7,8,9]
+var j = -1
+var i = -1
+randomList()
+document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => {
+   if(i < q1.length ) {
+        i = i + 1
+            document.querySelector(".question1").innerHTML = q1[i].question
+            document.querySelector(".A1").innerHTML = q1[i].answerA
+            document.querySelector(".B1").innerHTML = q1[i].answerB
+            document.querySelector(".C1").innerHTML = q1[i].answerC
+   }
+           if(i == 7) {
+                document.querySelectorAll(".Q1Container button").forEach(el => el.addEventListener("click",() => { 
+                document.querySelector(".Q1Container").style.display = "none"
+                document.querySelector(".resultBtn").style.display = "flex"
+                }))
+            }
+            slideRigth()
+            currentQuestion()
+            
+        
+}))
+//CURRENT QUESTION
+
+function currentQuestion (){
+    if(j < questionsNumber.length) {
+        j = j + 1
+        let number = document.querySelector(".currentQ")
+        number.innerHTML = questionsNumber[j]
+        slideLeft()
+    }
+
+    
+}
+setInterval(slideRigth,100) 
+
+
+//MOVEMENT   
+const buttonA = document.querySelector(".A1")
+const buttonB = document.querySelector(".B1")
+const buttonC = document.querySelector(".C1")
+const questions = document.querySelector(".question1")
+
+
+function slideLeft() {
+        buttonA.style.cssText = "transform:translate(7%);color:white"
+        buttonB.style.cssText = "transform:translate(5%);color:white"
+        buttonC.style.cssText = "transform:translate(3%);color:white" 
+        questions.style.cssText = "color:#7e99f3"
+
+    
+}
+function slideRigth() {
+        buttonA.style.cssText = "transform:translate(0%);transition:2s;color:black;"
+        buttonB.style.cssText = "transform:translate(0%);transition:2s;color:black;"
+        buttonC.style.cssText = "transform:translate(0%);transition:2s;color:black;"
+        questions.style.cssText = "color:grey;transition:2s"
+       
+}
+
+
+//RESULT
+var counterA = 0 
+var counterB = 0
+var counterC = 0
+document.querySelector(".A1").addEventListener("click", () => {
+  counterA++ 
+    
+})
+
+document.querySelector(".B1").addEventListener("click", () => {
+  counterB++    
+    
+})
+document.querySelector(".C1").addEventListener("click", () => {
+  counterC++ 
+     
+})
+document.querySelector(".resultBtn").addEventListener("click",() =>{
+    document.querySelector(".Q1Container").style.display = "none"
+    document.querySelector(".resultContainer").style.display = "flex"
+    document.querySelector(".resultBtn").style.display = "none"
+    if (counterA > 4) {
+        document.querySelector(".result h1").innerHTML = result[0].characterName
+        document.querySelector(".text").innerHTML = result[0].text
+    }
+    else if (counterB > 4) {
+        document.querySelector(".result h1").innerHTML = result[1].characterName
+        document.querySelector(".text").innerHTML = result[1].text
+    }
+    else if (counterC > 4) {
+        document.querySelector(".result h1").innerHTML = result[2].characterName
+        document.querySelector(".text").innerHTML = result[2].text
+    }
+    else {
+        let randomResult = Math.floor(Math.random()* result.length)
+        console.log(result[randomResult])
+        document.querySelector(".result h1").innerHTML = result[randomResult].characterName
+        document.querySelector(".text").innerHTML = result[randomResult].text
+        
+    }
+})
+    
+</script>
+
+        
